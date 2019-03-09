@@ -7,6 +7,8 @@ textarea {
 }
 </style>
 <div>
+  <a href="https://github.com/poi5305/go-yuv2webRTC">https://github.com/poi5305/go-yuv2webRTC</a>
+  <br />
   <a href="https://github.com/pions/webrtc/tree/v1.2.0/examples/gstreamer-send/jsfiddle">https://github.com/pions/webrtc/tree/v1.2.0/examples/gstreamer-send/jsfiddle</a>
 </div>
 
@@ -23,6 +25,9 @@ Golang base64 Session Description: <br /><textarea id="remoteSessionDescription"
 </div>
 <script>
 function postSession(session) {
+  if (session == "") {
+    return;
+  }
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {

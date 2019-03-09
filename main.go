@@ -37,7 +37,6 @@ func main() {
 }
 
 func getWeb(w http.ResponseWriter, r *http.Request) {
-	go webRTC.StopClient()
 	bs, err := ioutil.ReadFile("./index.html")
 	if err != nil {
 		log.Fatal(err)
