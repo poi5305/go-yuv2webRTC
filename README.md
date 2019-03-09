@@ -1,6 +1,14 @@
 ## Install
 
 ```
+# mac
+brew install libvpx pkg-config
+
+# linux
+apt-get install libvpx-dev
+```
+
+```
 go get github.com/poi5305/go-yuv2webRTC/...
 ```
 
