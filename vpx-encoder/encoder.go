@@ -13,6 +13,7 @@ import (
 #cgo android,arm LDFLAGS: -L${SRCDIR}/android_libs/armeabi-v7a/lib -lvpx -lm
 #cgo android,386 LDFLAGS: -L${SRCDIR}/android_libs/x86/lib -lvpx -lm
 #cgo !android pkg-config: vpx
+#include <stdlib.h>
 #include "vpx/vpx_encoder.h"
 #include "tools_common.h"
 
@@ -82,8 +83,11 @@ type VpxEncoder struct {
 
 func (v *VpxEncoder) init() error {
 	v.frameCount = 0
-	codecName := "vp8"
-	encoder := C.get_vpx_encoder_by_name(C.CString(codecName))
+
+	codecName := C.CString("vp8")
+	encoder := C.get_vpx_encoder_by_name(codecName)
+	C.free(unsafe.Pointer(codecName))
+
 	if encoder == nil {
 		return fmt.Errorf("get_vpx_encoder_by_name failed")
 	}
