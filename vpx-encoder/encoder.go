@@ -3,7 +3,6 @@ package vpxencoder
 import (
 	"fmt"
 	"unsafe"
-	"time"
 )
 
 // https://chromium.googlesource.com/webm/libvpx/+/master/examples/simple_encoder.c
