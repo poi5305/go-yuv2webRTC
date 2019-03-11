@@ -9,7 +9,10 @@ import (
 // https://chromium.googlesource.com/webm/libvpx/+/master/examples/simple_encoder.c
 
 /*
-#cgo pkg-config: vpx
+#cgo android CFLAGS: -I${SRCDIR}/android_include
+#cgo android,arm LDFLAGS: -L${SRCDIR}/android_libs/armeabi-v7a/lib -lvpx -lm
+#cgo android,386 LDFLAGS: -L${SRCDIR}/android_libs/x86/lib -lvpx -lm
+#cgo !android pkg-config: vpx
 #include "vpx/vpx_encoder.h"
 #include "tools_common.h"
 
