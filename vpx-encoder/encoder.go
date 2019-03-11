@@ -138,11 +138,11 @@ func (v *VpxEncoder) startLooping() {
 					break
 				}
 				bs := C.GoBytes(goBytes.bs, goBytes.size)
-				select {
-				case v.Output <- bs:
-				case <-time.After(time.Millisecond):
-					// Skip frame
+				// if buffer is full skip frame
+				if len(v.Output) >= cap(v.Output) {
+					continue
 				}
+				v.Output <- bs
 			}
 		}
 	}()
