@@ -137,9 +137,8 @@ func (w *WebRTC) startStreaming(vp8Track *webrtc.RTCTrack) {
 			if i%10 == 0 {
 				fmt.Println("On Frame", len(bs), i)
 			}
-			select {
-			case vp8Track.Samples <- media.RTCSample{Data: bs, Samples: 1}:
-			default:
+			if len(vp8Track.Samples) < cap(vp8Track.Samples) {
+				vp8Track.Samples <- media.RTCSample{Data: bs, Samples: 1}
 			}
 		}
 	}()
