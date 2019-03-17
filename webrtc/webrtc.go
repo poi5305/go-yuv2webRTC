@@ -126,7 +126,9 @@ func (w *WebRTC) startStreaming(vp8Track *webrtc.RTCTrack) {
 	go func() {
 		for w.isConnected {
 			yuv := <-w.ImageChannel
-			w.encoder.Input <- yuv
+			if len(w.encoder.Input) < cap(w.encoder.Input) {
+				w.encoder.Input <- yuv
+			}
 		}
 	}()
 
