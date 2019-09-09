@@ -10,6 +10,7 @@ import (
 /*
 #cgo android CFLAGS: -I${SRCDIR}/android_include
 #cgo android,arm LDFLAGS: -L${SRCDIR}/android_libs/armeabi-v7a/lib -lvpx -lm
+#cgo android,arm64 LDFLAGS: -L${SRCDIR}/android_libs/arm64-v8a/lib -lvpx -lm
 #cgo android,386 LDFLAGS: -L${SRCDIR}/android_libs/x86/lib -lvpx -lm
 #cgo !android pkg-config: vpx
 #include <stdlib.h>
