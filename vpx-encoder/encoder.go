@@ -12,6 +12,7 @@ import (
 #cgo android,arm LDFLAGS: -L${SRCDIR}/android_libs/armeabi-v7a/lib -lvpx -lm
 #cgo android,arm64 LDFLAGS: -L${SRCDIR}/android_libs/arm64-v8a/lib -lvpx -lm
 #cgo android,386 LDFLAGS: -L${SRCDIR}/android_libs/x86/lib -lvpx -lm
+#cgo android,amd64 LDFLAGS: -L${SRCDIR}/android_libs/x86_64/lib -lvpx -lm
 #cgo !android pkg-config: vpx
 #include <stdlib.h>
 #include "vpx/vpx_encoder.h"
@@ -104,7 +105,7 @@ func (v *VpxEncoder) init() error {
 	cfg.g_timebase.num = 1
 	cfg.g_timebase.den = v.fps
 	cfg.rc_target_bitrate = v.bitrate
-	cfg.g_error_resilient = 1
+	cfg.g_error_resilient = 0
 
 	if C.call_vpx_codec_enc_init(&v.vpxCodexCtx, encoder, &cfg) != 0 {
 		return fmt.Errorf("Failed to initialize encoder")
